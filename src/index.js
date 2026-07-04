@@ -2,16 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+console.log('1. index.js загружен');
+console.log('2. Ищем root...');
+const rootElement = document.getElementById('root');
+console.log('3. rootElement:', rootElement);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  console.log('4. root создан');
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+  console.log('5. App отрендерен');
+} else {
+  console.error('6. Нет элемента с id="root"!');
+}
