@@ -10,25 +10,22 @@ function App() {
 
   // обрабатывает запуск игры с переданными настройками
   const handleStartGame = (configData) => {
-    setConfig(configData);
-    setGameStarted(true);
+    setConfig(configData);      // сохраняем настройки
+    setGameStarted(true);       // переключаем на экран симуляции
   };
 
   // возвращает в главное меню, сбрасывая игру
   const handleNewGame = () => {
-    setGameStarted(false);
-    setConfig(null);
+    setGameStarted(false);      // возвращаемся в меню
+    setConfig(null);            // очищаем настройки
   };
 
   return (
     <div>
       {/* если игра не запущена, показываем главное меню */}
-      {!gameStarted ? (
-        <MainMenu onStartGame={handleStartGame} />
-      ) : (
-        // иначе показываем экран симуляции
-        <SimulationView config={config} onNewGame={handleNewGame} />
-      )}
+      {!gameStarted && <MainMenu onStartGame={handleStartGame} />}
+      {/* если игра запущена, показываем экран симуляции с настройками */}
+      {gameStarted && <SimulationView config={config} onNewGame={handleNewGame} />}
     </div>
   );
 }
